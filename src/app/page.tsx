@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import About from './components/About';
+import Achievements from './components/Achievements';
 import Skills from './components/Skills';
 import Projects from './components/Projects';
 import Education from './components/Education';
@@ -38,6 +39,9 @@ export default function Home() {
         </motion.div>
         <motion.div variants={sectionVariants}>
           <About />
+        </motion.div>
+        <motion.div variants={sectionVariants}>
+          <Achievements />
         </motion.div>
         <motion.div variants={sectionVariants}>
           <Skills />
