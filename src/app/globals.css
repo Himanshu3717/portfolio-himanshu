@@ -39,6 +39,9 @@ body {
 }
 
 @layer components {
+  .container {
+    @apply max-w-7xl mx-auto;
+  }
   .gradient-text {
     @apply bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent;
   }
@@ -72,10 +75,6 @@ body {
 
   .section {
     @apply py-20 px-4;
-  }
-
-  .container {
-    @apply max-w-7xl mx-auto;
   }
 }
 

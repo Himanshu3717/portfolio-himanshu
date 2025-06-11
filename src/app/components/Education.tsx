@@ -1,59 +1,84 @@
 'use client';
 
 import React from 'react';
+import { motion } from 'framer-motion';
+
+const educationData = [
+  {
+    duration: '2022-2026',
+    degree: 'B. Tech in Information Technology (Specialization in AI/ML)',
+    institution: 'Vidyalankar Institute of Technology, Mumbai, India',
+    score: 'GPA: 9.84/10',
+    details: 'Among the top 5% of the batch. Relevant Coursework: Data Structures, Algorithms, Database Management, Software Engineering.',
+  },
+  {
+    duration: '2020-2022',
+    degree: 'Higher Secondary Certificate (HSC)',
+    institution: 'Vani Vidyalaya Junior College, Mumbai, India',
+    score: '80.33%',
+    details: '',
+  },
+  {
+    duration: '2019-2020',
+    degree: 'Secondary School Certificate (SSC)',
+    institution: 'Mithila English High School, Mumbai, India',
+    score: '89.80%',
+    details: '',
+  },
+];
 
 const Education = () => {
-  const education = [
-    {
-      degree: 'B. Tech in Information Technology (Specialization in AI/ML)',
-      institution: 'Vidyalankar Institute Of Technology',
-      gpa: 'GPA: 9.84',
-      duration: 'Jan 2022 — Dec 2026',
-      location: 'Vadala, India'
-    },
-    {
-      degree: 'HSC',
-      institution: 'Vani Vidyalaya Junior College',
-      gpa: 'GPA: 80.33',
-      duration: 'Jan 2020 — Dec 2022',
-      location: 'Mulund, India'
-    },
-    {
-      degree: 'SSC',
-      institution: 'Mithila English High School',
-      gpa: 'GPA: 89.80',
-      duration: 'Jan 2019 — Dec 2020',
-      location: 'Thane, India'
+  const itemVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut"
+      }
     }
-  ];
+  };
 
   return (
-    <section id="education" className="py-20">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-dark dark:text-light">Education</h2>
-          <div className="w-20 h-1 bg-primary dark:bg-secondary mx-auto"></div>
-        </div>
-        
-        <div className="max-w-3xl mx-auto">
-          <div className="space-y-8">
-            {education.map((edu, index) => (
-              <div 
-                key={index}
-                className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow"
-              >
-                <div className="flex flex-col md:flex-row md:justify-between md:items-center mb-4">
-                  <h3 className="text-xl font-semibold text-primary dark:text-secondary">{edu.degree}</h3>
-                  <span className="text-gray-600 dark:text-gray-400">{edu.duration}</span>
-                </div>
-                <h4 className="text-lg font-medium text-dark dark:text-light mb-2">{edu.institution}</h4>
-                <div className="flex flex-col md:flex-row md:justify-between md:items-center">
-                  <span className="text-gray-700 dark:text-gray-300">{edu.gpa}</span>
-                  <span className="text-gray-600 dark:text-gray-400">{edu.location}</span>
-                </div>
+    <section id="education" className="py-16 sm:py-20 bg-gradient-to-br from-purple-950 to-blue-950 text-white relative overflow-hidden">
+      {/* Optional: Add a subtle pattern overlay if desired, e.g., using a background image */}
+      <div className="absolute inset-0 z-0 opacity-10" style={{ backgroundImage: 'url("/images/grid-pattern.png")', backgroundSize: '30px 30px' }} />
+
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <motion.div 
+          className="text-center mb-12 sm:mb-16"
+          initial={{ opacity: 0, y: -50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.5 }}
+          transition={{ duration: 0.8 }}
+        >
+          <h2 className="text-4xl sm:text-5xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent mb-3 sm:mb-4 hover:from-blue-500 hover:to-purple-500 transition-colors duration-300">Education</h2>
+          <p className="text-lg sm:text-xl text-gray-400 hover:text-gray-300 transition-colors duration-300">My academic journey and qualifications.</p>
+        </motion.div>
+
+        <div className="space-y-12">
+          {educationData.map((item, index) => (
+            <motion.div
+              key={index}
+              className="rounded-lg shadow-xl p-6 sm:p-8 flex flex-col md:flex-row items-start gap-6 transition-all duration-300 hover:shadow-2xl hover:scale-[1.02] bg-gradient-to-br from-purple-800 to-blue-800"
+              variants={itemVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ delay: index * 0.2 }}
+            >
+              <div className="w-full md:w-1/4 flex-shrink-0 text-center md:text-left">
+                <p className="text-blue-300 text-lg sm:text-xl font-semibold mb-2 hover:text-blue-200 transition-colors duration-300">{item.duration}</p>
+                <p className="text-gray-400 text-sm sm:text-base hover:text-gray-300 transition-colors duration-300">{item.institution}</p>
+                <p className="text-gray-400 text-sm sm:text-base mt-1 hover:text-gray-300 transition-colors duration-300">{item.score}</p>
               </div>
-            ))}
-          </div>
+              <div className="w-full md:w-3/4">
+                <h3 className="text-xl sm:text-2xl font-bold mb-2 text-white hover:text-blue-300 transition-colors duration-300">{item.degree}</h3>
+                {item.details && <p className="text-gray-300 text-base sm:text-lg leading-relaxed p-4 rounded-lg shadow-md bg-gradient-to-br from-purple-800 to-blue-800 hover:text-gray-200 transition-colors duration-300">{item.details}</p>}
+              </div>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>

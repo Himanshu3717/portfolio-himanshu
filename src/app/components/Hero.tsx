@@ -4,101 +4,71 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 
-export default function Hero() {
+const Hero = () => {
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden bg-white dark:bg-gray-900">
-      {/* Background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-purple-50 dark:from-gray-900 dark:to-gray-800" />
+    <section className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-purple-900 to-blue-900 text-white py-16 sm:py-20">
+      {/* Optional: Add a subtle pattern overlay if desired, e.g., using a background image */}
+      <div className="absolute inset-0 z-0 opacity-10" style={{ backgroundImage: 'url("/images/grid-pattern.png")', backgroundSize: '30px 30px' }} />
       
-      {/* Content */}
-      <div className="container mx-auto px-4 py-20 relative z-10">
-        <div className="flex flex-col lg:flex-row items-center justify-between gap-12">
-          {/* Text content */}
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-8 md:gap-12">
           <motion.div 
-            className="flex-1 text-center lg:text-left"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+            className="md:w-1/2 text-center md:text-left"
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-              Himanshu Pathak
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-4 sm:mb-6 text-white hover:text-gray-200 transition-colors duration-300">
+              Hi, I'm <span className="text-blue-300 hover:text-blue-200 transition-colors duration-300">Himanshu Pathak</span>
             </h1>
-            <h2 className="text-2xl md:text-3xl text-gray-700 dark:text-gray-300 mb-6">
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-3 sm:mb-4 text-gray-200 hover:text-gray-100 transition-colors duration-300">
               Full Stack Developer & AI/ML Enthusiast
             </h2>
-            <p className="text-gray-600 dark:text-gray-400 text-lg mb-8 max-w-2xl mx-auto lg:mx-0">
-              Passionate about creating innovative solutions and exploring the intersection of technology and human experience.
+            <p className="text-base sm:text-lg text-gray-300 mb-6 sm:mb-8 max-w-xl md:max-w-none mx-auto md:mx-0 hover:text-gray-200 transition-colors duration-300">
+              Passionate about building innovative solutions and exploring the frontiers of technology.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-              <motion.a
-                href="#contact"
-                className="btn-primary"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+            <motion.div 
+              className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center md:justify-start"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 }}
+            >
+              <a 
+                href="#contact" 
+                className="px-5 py-2 sm:px-6 sm:py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm sm:text-base transform hover:scale-105 inline-block"
               >
-                Get in Touch
-              </motion.a>
-              <motion.a
-                href="/resume.pdf"
+                Contact Me
+              </a>
+              <a 
+                href="/resume.pdf" 
                 download="Himanshu_Pathak_Resume.pdf"
-                className="btn-secondary"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+                className="px-5 py-2 sm:px-6 sm:py-3 border-2 border-blue-600 text-blue-300 rounded-lg hover:bg-blue-600 hover:text-white transition-colors text-sm sm:text-base transform hover:scale-105 inline-block"
               >
                 Download Resume
-              </motion.a>
-            </div>
+              </a>
+            </motion.div>
           </motion.div>
-
-          {/* Image/Illustration */}
+          
           <motion.div 
-            className="flex-1 relative"
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
+            className="md:w-1/2 flex justify-center"
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5 }}
           >
-            <div className="relative w-full max-w-lg mx-auto">
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full blur-3xl opacity-20 animate-pulse" />
-              <div className="relative aspect-square rounded-full overflow-hidden border-4 border-white dark:border-gray-800 shadow-xl">
-                <Image
-                  src="/profile.jpg"
-                  alt="Himanshu Pathak"
-                  fill
-                  className="object-cover"
-                  priority
-                />
-              </div>
+            <div className="w-56 h-56 sm:w-64 sm:h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-blue-500 shadow-lg relative transition-transform duration-300 hover:scale-105">
+              <Image 
+                src="/profile.png" 
+                alt="Himanshu Pathak"
+                fill 
+                className="object-cover transition-transform duration-300 hover:scale-110"
+                priority 
+              />
             </div>
           </motion.div>
         </div>
-
-        {/* Scroll indicator */}
-        <motion.div 
-          className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ 
-            duration: 0.5, 
-            delay: 1,
-            repeat: Infinity,
-            repeatType: "reverse"
-          }}
-        >
-          <svg 
-            className="w-6 h-6 text-gray-400 dark:text-gray-600"
-            fill="none" 
-            stroke="currentColor" 
-            viewBox="0 0 24 24"
-          >
-            <path 
-              strokeLinecap="round" 
-              strokeLinejoin="round" 
-              strokeWidth={2} 
-              d="M19 14l-7 7m0 0l-7-7m7 7V3"
-            />
-          </svg>
-        </motion.div>
       </div>
     </section>
   );
-} 
+};
+
+export default Hero; 
